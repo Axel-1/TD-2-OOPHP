@@ -1,27 +1,39 @@
 <?php
 
 include "student.php";
-include "studentTab.php";
+include "studentTable.php";
 
-$student1 = new student("Test1",19);
+function printResult($studentTableObj)
+{
+    $table = $studentTableObj->getStudentTable();
+    $gradeSum = 0;
+    foreach ($table as $key => $val) {
+        $gradeSum = $gradeSum + $val->getGrade();
+    }
+    $gradeAvg = $gradeSum / $studentTableObj->getStudentCount();
+    print("Note min : " . $table[0]->getGrade() . " par " . $table[0]->getName() . "\n");
+    print("Note max : " . $table[count($table) - 1]->getGrade() . " par " . $table[count($table) - 1]->getName() . "\n");
+    print("Moyenne : " . $gradeAvg . "\n");
+
+}
+
+$student1 = new student("Test1", 19);
 $student2 = new student("Test2", 19.5);
 $student3 = new student("Test3", 10);
-$studentTable = new studentTab();
+$student4 = new student("Test4", 18);
+$studentTable1 = new studentTable();
 
-$studentTable->addStudent($student1);
-$studentTable->addStudent($student2);
-$studentTable->addStudent($student3);
+$studentTable1->addStudent($student1);
+$studentTable1->addStudent($student2);
+$studentTable1->addStudent($student3);
+$studentTable1->addStudent($student4);
 
-$studentTable->printStudentTab();
+print_r($studentTable1->getStudentTable());
 
-$student4 = new student("Test3", 20);
+printResult($studentTable1);
 
-$studentTable->addStudent($student4);
+$studentTable1->rmStudentByID(2);
 
-$studentTable->printStudentTab();
+print_r($studentTable1->getStudentTable());
 
-$studentTable->rmStudentByID(2);
-
-$studentTable->printStudentTab();
-
-print_r($studentTable->getStudentByID(2));
+printResult($studentTable1);

@@ -3,19 +3,22 @@
 
 class student
 {
-    private $name;
-    private $rating;
+    private string $name;
+    private float $grade;
 
-    public function __construct($newName, $newRating){
+    public function __construct($newName, $newGrade)
+    {
         $this->name = $newName;
-        $this->rating = $newRating;
+        $this->grade = $newGrade;
     }
 
-    public function getName(){
+    public function getName(): string
+    {
         return $this->name;
     }
 
-    public function getRating(){
-        return $this->rating;
+    public function getGrade(): float
+    {
+        return $this->grade;
     }
 }
