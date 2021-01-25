@@ -3,8 +3,8 @@
 
 class student
 {
-    private string $name;
-    private float $grade;
+    private $name;
+    private $grade;
 
     public function __construct($newName, $newGrade)
     {
@@ -12,12 +12,12 @@ class student
         $this->grade = $newGrade;
     }
 
-    public function getName(): string
+    public function getName()
     {
         return $this->name;
     }
 
-    public function getGrade(): float
+    public function getGrade()
     {
         return $this->grade;
     }

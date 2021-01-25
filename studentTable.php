@@ -3,15 +3,15 @@
 
 class studentTable
 {
-    private array $table = array();
-    private int $studentCount;
+    private $table = array();
+    private $studentCount;
 
     public function __construct()
     {
         $this->studentCount = 0;
     }
 
-    public function getStudentCount(): int
+    public function getStudentCount()
     {
         return $this->studentCount;
     }
@@ -47,7 +47,7 @@ class studentTable
         $this->studentCount--;
     }
 
-    public function getStudentTable(): array
+    public function getStudentTable()
     {
         return $this->table;
     }
