@@ -20,12 +20,9 @@ class studentTable
     {
         if (count($this->table) != 0) {
             $indexCounter = 0;
-            foreach ($this->table as $key => $val) {
-                if ($val->getGrade() > $newStudent->getGrade()) {
-                    break;
-                } else {
-                    $indexCounter++;
-                }
+            while ($indexCounter < count($this->table)
+                && $newStudent->getGrade() > $this->table[$indexCounter]->getGrade()) {
+                $indexCounter++;
             }
             array_splice($this->table, $indexCounter, 0, array($newStudent));
 
@@ -35,19 +32,21 @@ class studentTable
         $this->studentCount++;
     }
 
-    public function getStudentByID($studentID)
+    public function getStudentByID($studentIndex)
     {
-        if($studentID > count($this->table)-1 || $studentID < 0) {
+        if ($studentIndex > count($this->table) - 1 || $studentIndex < 0) {
             throw new Exception("Hors du tableau");
         } else {
-            return $this->table[$studentID];
+            return $this->table[$studentIndex];
         }
     }
 
-    public function rmStudentByID($studentID)
+    public function rmStudentByID($studentIndex)
     {
-        unset($this->table[$studentID]);
-        $this->table = array_values($this->table);
+        for ($i = $studentIndex; $i < $this->studentCount-1; $i++) {
+            $this->table[$i] = $this->table[$i+1];
+        }
+        unset($this->table[$this->studentCount-1]);
         $this->studentCount--;
     }
 
