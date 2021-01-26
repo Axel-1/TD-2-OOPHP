@@ -37,3 +37,9 @@ $studentTable1->rmStudentByID(2);
 print_r($studentTable1->getStudentTable());
 
 printResult($studentTable1);
+
+try {
+    print_r($studentTable1->getStudentByID(-1));
+} catch (Exception $e) {
+    print("Erreur : " . $e->getMessage() . "\n");
+}

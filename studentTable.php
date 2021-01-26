@@ -37,7 +37,11 @@ class studentTable
 
     public function getStudentByID($studentID)
     {
-        return $this->table[$studentID];
+        if($studentID > count($this->table)-1 || $studentID < 0) {
+            throw new Exception("Hors du tableau");
+        } else {
+            return $this->table[$studentID];
+        }
     }
 
     public function rmStudentByID($studentID)
